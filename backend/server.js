@@ -3,7 +3,7 @@ import express from "express";
 import { connect } from "mongoose";
 import cors from "cors";
 import session from "express-session";
-import userRoutes from "./routes/users.js";
+import userRoutes from "./routes/userRoute.js";
 
 dotenv.config();
 
