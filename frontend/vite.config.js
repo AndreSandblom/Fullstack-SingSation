@@ -10,4 +10,7 @@ export default defineConfig({
       '/api': 'http://localhost:3001'
     }
   }
+      "/api": "http://localhost:5000",
+    },
+  },
 })

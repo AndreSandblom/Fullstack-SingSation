@@ -33,3 +33,4 @@ backend/build/
 *.njsproj
 *.sln
 *.sw?
+backend/.env
