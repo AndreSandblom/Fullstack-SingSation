@@ -27,4 +27,52 @@ router.post("/register", async (req, res) => {
   res.status(201).json({ message: "User registered successfully" });
 });
 
+router.get("/profile", async (req, res) => {
+    if (!req.session.userId) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+  
+    try {
+      const user = await User.findById(req.session.userId);
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      res.status(200).json({ username: user.username, email: user.email });
+    } catch (err) {
+      res.status(500).json({ message: "Server error" });
+    }
+  });
+
+router.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    return res
+      .status(400)
+      .json({ message: "Username and password are required" });
+  }
+
+  const user = await User.findOne({ username });
+  if (!user) {
+    return res.status(401).json({ message: "Invalid credentials" });
+  }
+
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) {
+    return res.status(401).json({ message: "Invalid credentials" });
+  }
+
+  req.session.userId = user._id;
+  res.status(200).json({ message: "Login successful" });
+});
+
+router.post("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ message: "Failed to log out" });
+    }
+    res.status(200).json({ message: "Logout successful" });
+  });
+});
+
 export default router;
