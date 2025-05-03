@@ -1,4 +1,5 @@
 const axios = require('axios');
+const songs = require('../data/songsData');
 
 const getLyrics = async (req, res) => {
     const { artist, title } = req.params;
@@ -14,4 +15,19 @@ const getLyrics = async (req, res) => {
     }
 } 
 
-module.exports = { getLyrics };
+const getSongList = (req, res) => {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 5;
+    const start = (page - 1) * limit;
+    const end = page * limit;
+    const paginated = songs.slice(start, end);
+  
+    res.json({
+      page,
+      limit,
+      total: songs.length,
+      results: paginated
+    });
+  };
+  
+  module.exports = { getLyrics, getSongList };
