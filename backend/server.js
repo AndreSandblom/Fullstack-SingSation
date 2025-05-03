@@ -3,12 +3,15 @@ const cors = require('cors');
 const mongoose = require('mongoose')
 const app = express();
 require('dotenv').config();
+//plugin' in the lyrics route
+const lyricsRoutes = require('./routes/lyricsRoutes');
 
 app.use(cors());
 app.use(express.json());
 
 
 // APP AND API ROUTES GOES HERE
+app.use('/api', lyricsRoutes);
 
 mongoose.connect(process.env.MONGO_URL)
     .then(() => {
