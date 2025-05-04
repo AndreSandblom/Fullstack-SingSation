@@ -1,4 +1,4 @@
-const Playlist = require('../models/Playlist')
+import Playlist from "../models/Playlist.js";
 
 const createPlaylist = async(req,res) => {
     try {
@@ -107,10 +107,4 @@ const getPlaylistId = async (req, res) => {
     }
 }
 
-module.exports = {
-    createPlaylist,
-    addSong,
-    deleteSong,
-    getPlaylistId,
-    getUserPlaylists
-};
+export { createPlaylist, addSong, deleteSong, getPlaylistId, getUserPlaylists };
