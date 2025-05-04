@@ -4,31 +4,15 @@ import { connect } from "mongoose";
 import cors from "cors";
 import session from "express-session";
 import userRoutes from "./routes/userRoute.js";
+import lyricsRoute from "./routes/lyricsRoute.js";
 
 dotenv.config();
 
 const app = express();
-require('dotenv').config();
-//plugin' in the lyrics route
-const lyricsRoute = require('./routes/lyricsRoute');
 
 app.use(cors());
 app.use(express.json());
 
-
-// APP AND API ROUTES GOES HERE
-app.use('/api', lyricsRoute);
-
-connect(process.env.MONGO_URL)
-    .then(() => {
-        console.log("Connection to MongoDB Sucess.")
-
-        const PORT = process.env.PORT || 3001;
-        app.listen(PORT, () => console.log(`Server is running on ${PORT}.`))
-    })
-    .catch((err) => {
-        console.error("MongoDB Connection Problem: ", err);
-    });
 
 // Use of session. This block needs to be before defining the routes.
 app.use(
@@ -42,9 +26,20 @@ app.use(
         maxAge: 3600000, // 1 hour
       },
     })
-  );
+);
 
-// Routes
-
+// APP AND API ROUTES GOES HERE
+app.use('/api', lyricsRoute);
 app.use("/api/users", userRoutes);
+
+connect(process.env.MONGO_URL)
+    .then(() => {
+        console.log("Connection to MongoDB Sucess.")
+
+        const PORT = process.env.PORT || 3001;
+        app.listen(PORT, () => console.log(`Server is running on ${PORT}.`))
+    })
+    .catch((err) => {
+        console.error("MongoDB Connection Problem: ", err);
+    });
 

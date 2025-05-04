@@ -1,8 +1,8 @@
-const express = require('express');
-const { getLyrics, getSongList } = require('../controllers/lyricsController');
-const router = express.Router();
+import { Router } from "express";
+const router = Router();
+import { getLyrics, getSongList } from "../controllers/lyricsController.js";
 
 router.get('/lyrics/:artist/:title', getLyrics);
 router.get('/songs', getSongList);
 
-module.exports = router;
+export default router;
