@@ -11,5 +11,4 @@ const songs = [
     { artist: "Drake", title: "Hotline Bling" }
   ];
   
-  module.exports = songs;
-  
+export default songs;

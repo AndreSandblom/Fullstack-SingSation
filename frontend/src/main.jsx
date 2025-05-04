@@ -3,9 +3,10 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import RegisterForm from "./users/Register.jsx";
 import LoginForm from "./users/Login.jsx";
+import App from "./App.jsx";
 import ProfilePage from "./users/Profile.jsx"; // you'll create this next
 
-const App = () => {
+const Application = () => {
   return (
     <Router>
       <Routes>
@@ -13,12 +14,13 @@ const App = () => {
           path="/"
           element={
             <>
-              <LoginForm />
-              <RegisterForm />
+              <App />
             </>
           }
         />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/register" element={<RegisterForm />} />
       </Routes>
     </Router>
   );
@@ -26,6 +28,6 @@ const App = () => {
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <Application />
   </React.StrictMode>
 );

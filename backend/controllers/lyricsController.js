@@ -1,5 +1,5 @@
-const axios = require('axios');
-const songs = require('../data/songsData');
+import axios from "axios";
+import songs from "../data/songsData.js";
 
 const getLyrics = async (req, res) => {
     const { artist, title } = req.params;
@@ -30,4 +30,4 @@ const getSongList = (req, res) => {
     });
   };
   
-  module.exports = { getLyrics, getSongList };
+export { getLyrics, getSongList };
