@@ -1,6 +1,6 @@
-require('dotenv').config();
-const mongoose = require('mongoose');
-const Song = require('../models/Song');
+import 'dotenv/config';            // loads MONGO_URL and RUN_SEED
+import mongoose from 'mongoose';
+import Song from '../models/Song.js';
 
 const songs = [
   { artist: "Adele", title: "Hello" },
@@ -15,7 +15,7 @@ const songs = [
   { artist: "Drake", title: "Hotline Bling" }
 ];
 
-async function seedSongs() {
+export default async function seedSongs() {
   try {
     await mongoose.connect(process.env.MONGO_URL);
     console.log('Connected to MongoDB');
@@ -25,12 +25,12 @@ async function seedSongs() {
 
     await Song.insertMany(songs);
     console.log('Seeded songs successfully');
-    process.exit();
   } catch (error) {
     console.error('Error seeding songs:', error);
     process.exit(1);
+  } finally {
+    await mongoose.disconnect();
   }
 }
 
-module.exports = seedSongs;
   
