@@ -1,8 +1,8 @@
 import { Router } from "express";
-const router = Router();
-import { getLyrics, getSongList } from "../controllers/lyricsController.js";
+import { getLyrics } from "../controllers/lyricsController.js";
 
-router.get('/lyrics/:artist/:title', getLyrics);
-router.get('/songs', getSongList);
+const lyricsRouter = Router();
 
-export default router;
+lyricsRouter.get('/:artist/:title', getLyrics);
+
+export default lyricsRouter;

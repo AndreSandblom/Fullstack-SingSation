@@ -4,7 +4,9 @@ import { connect } from "mongoose";
 import cors from "cors";
 import session from "express-session";
 import userRoutes from "./routes/userRoute.js";
-import lyricsRoute from "./routes/lyricsRoute.js";
+import lyricsRouter from "./routes/lyricsRoute.js";
+import songRouter from "./routes/songRoute.js";
+import seedSongs from "./data/songsData.js";
 
 dotenv.config();
 
@@ -17,7 +19,7 @@ app.use(express.json());
 // Use of session. This block needs to be before defining the routes.
 app.use(
     session({
-      secret: process.env.SESSION_SECRET, // It can be generated with the command: node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+      secret: process.env.SESSION_SECRET || "defaultsecret", // It can be generated with the command: node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
       resave: false,
       saveUninitialized: false,
       cookie: {
@@ -29,8 +31,15 @@ app.use(
 );
 
 // APP AND API ROUTES GOES HERE
-app.use('/api', lyricsRoute);
+app.use('/api/lyrics', lyricsRouter);
+app.use('/api/songs', songRouter);
 app.use("/api/users", userRoutes);
+
+//one-time database seed (set to 'false' if not used and 'true' if you want to seed songs)
+if (process.env.RUN_SEED === 'false') {
+    //call seedSongs and exit
+    seedSongs();  
+  }
 
 connect(process.env.MONGO_URL)
     .then(() => {
