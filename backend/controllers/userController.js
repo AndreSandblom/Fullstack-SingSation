@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import Playlist from "../models/Playlist.js";
 const SALT_WORK_FACTOR = 10;
 import bcrypt from "bcrypt";
 
@@ -21,7 +22,15 @@ const registerUser = async (req, res) => {
     password: hashedPassword,
   });
 
+  // Creating the playlist when the user is created. Making sure 1 to 1.
+  const newPlaylist = new Playlist({
+    user: newUser._id,
+    songs: []
+  })
+
+  
   await newUser.save();
+  await newPlaylist.save();
   res.status(201).json({ message: "User registered successfully" });
 }
 
