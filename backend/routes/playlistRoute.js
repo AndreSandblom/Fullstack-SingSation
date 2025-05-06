@@ -1,13 +1,13 @@
-import { Router } from "express";
-const router = Router();
-const playlistController = require("../controllers/playlistController");
+import express from "express";
+import { requireAuth } from "../middleware/authenticateSession";
+import { addSong, deleteSong, getUserPlaylist }  from "../controllers/playlistController";
 
-router.post('/playlists', playlistController.createPlaylistId) // creating the playlist
+const router = express.Router();
 
-router.post('/playlists/:id/add', playlistController.addSong) // adding songs
+router.use(requireAuth);
 
-router.delete('/playlists/:id/delete', playlistController.deleteSong) //removing songs
-
-router.get('/playlists/:id', playlistController.getPlaylist) // fetching the playlist
+router.post('/playlists/add', addSong) // adding songs
+router.delete('/playlists/delete', deleteSong) //removing songs
+router.get('/playlists/', getUserPlaylist) // fetching the playlist
 
 export default router;
