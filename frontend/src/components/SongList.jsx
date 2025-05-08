@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 
-function SongList({ onSongSelect }) {
+export default function SongList({ onSongSelect }) {
     const [songs, setSongs] = useState([]);
     //pagination
     const [ page, setPage ] = useState(1);
@@ -41,5 +41,3 @@ function SongList({ onSongSelect }) {
       </div>
     );
 }
-
-export default SongList;
