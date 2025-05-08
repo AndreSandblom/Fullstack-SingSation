@@ -12,10 +12,13 @@ export default function HomePage() {
   };
 
   return (
-    <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
+    <div style={{ fontFamily: 'sans-serif' }}>
+      <div style={{ padding: '2rem' }}></div>
+      <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
       <h1>SingSation</h1>
       <SearchForm onSearch={goToLyrics} />
       <SongList   onSongSelect={goToLyrics} />
+      </div>
     </div>
   );
 }

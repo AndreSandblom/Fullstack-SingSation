@@ -28,7 +28,16 @@ export default function SearchForm({ onSearch }) {
           required
           style={{ marginRight: '0.5rem' }}
         />
-        <button type="submit">Search Lyrics</button>
+        {/* temporary styling for the search button */}
+        <button
+        type="submit"
+        style={{
+          width: '10rem',
+          padding: '0.5rem 0.5rem',
+        }}
+      >
+        Search Lyrics
+      </button>
       </form>
     );
 }

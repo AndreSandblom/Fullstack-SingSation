@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import NavBar from './components/NavBar';
 
 //pages
 import HomePage from './pages/HomePage';
@@ -12,6 +13,8 @@ import RegisterForm from './users/Register';
 
 export default function App() {
   return (
+    <>
+    <NavBar />
     <Routes>
       <Route path="/"         element={<HomePage />} />
       <Route path="/lyrics/:artist/:title" element={<LyricsPage />} />
@@ -19,5 +22,6 @@ export default function App() {
       <Route path="/login"    element={<LoginForm />} />
       <Route path="/register" element={<RegisterForm />} />
     </Routes>
+    </>
   );
 }
