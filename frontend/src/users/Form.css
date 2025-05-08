@@ -78,4 +78,35 @@
   button.danger-button:hover {
     background-color: #b02a37;
   }
+
+  .playlist-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.playlist-form input {
+    margin-right: 0.5rem;
+    padding: 0.4rem;
+}
+
+.playlist-form button {
+    padding: 0.4rem 1rem;
+}
+
+.small {
+    font-size: 0.8rem;
+    padding: 2px 6px;
+}
+
+.danger-button.small {
+  font-size: 0.8rem;
+  padding: 2px 8px;
+  background-color: #c0392b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
   
