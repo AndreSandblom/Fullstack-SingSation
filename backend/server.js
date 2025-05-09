@@ -7,6 +7,7 @@ import userRoutes from "./routes/userRoute.js";
 import lyricsRouter from "./routes/lyricsRoute.js";
 import songRouter from "./routes/songRoute.js";
 import seedSongs from "./data/songsData.js";
+import playlistRoutes from "./routes/playlistRoute.js";
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ app.use(
 app.use('/api/lyrics', lyricsRouter);
 app.use('/api/songs', songRouter);
 app.use("/api/users", userRoutes);
+app.use("/api/playlists", playlistRoutes);
 
 //one-time database seed (set to 'false' if not used and 'true' if you want to seed songs)
 if (process.env.RUN_SEED === 'false') {
