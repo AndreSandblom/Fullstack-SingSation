@@ -1,224 +1,242 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import "./Form.css"; // Reuse the minimalistic styles
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import './Form.css';
 
 export default function ProfilePage() {
-    const navigate = useNavigate();
-    const [profile, setProfile] = useState(null);
-    const [playlist, setPlaylist] = useState([]);
-    const [error, setError] = useState("");
-    const [updateError, setUpdateError] = useState("");
-    const [message, setMessage] = useState("");
-    const [usernameEmailData, setUsernameEmailData] = useState({
-        username: "",
-        email: "",
-    });
-    const [passwordData, setPasswordData] = useState({
-        currentPassword: "",
-        newPassword: "",
-    });
+  const navigate = useNavigate();
+  const [profile, setProfile] = useState(null);
+  const [playlist, setPlaylist] = useState([]);
+  const [error, setError] = useState('');
+  const [updateError, setUpdateError] = useState('');
+  const [message, setMessage] = useState('');
+  const [usernameEmailData, setUsernameEmailData] = useState({
+    username: '',
+    email: '',
+  });
+  const [passwordData, setPasswordData] = useState({
+    currentPassword: '',
+    newPassword: '',
+  });
+  const [permissions, setPermissions] = useState(null);
 
-    useEffect(() => {
-        const fetchProfile = async () => {
-            try {
-                const res = await axios.get("/api/users/profile", {
-                    withCredentials: true,
-                });
-                setProfile(res.data);
-                setUsernameEmailData({
-                    username: res.data.username,
-                    email: res.data.email,
-                });
-            } catch (err) {
-                setError(err.response?.data?.message || "Error loading profile");
-            }
-        };
-        const fetchPlaylist = async () => {
-            try {
-                const res = await axios.get("/api/playlists/", {
-                    withCredentials: true,
-                });
-                if (!res.data || !res.data.songs) {
-                    console.log("Playlist is empty or not found")
-                } else {
-                    console.log("Got the playlist. ", res.data);
-                }
-                setPlaylist(res.data.songs || []);
-            } catch (err) {
-                console.error("Failed to load playlist from react.", err);
-            }
-        }
-        fetchProfile();
-        fetchPlaylist();
-    }, []);
-
-    const handleUsernameEmailChange = (e) => {
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const res = await axios.get('/api/users/profile', {
+          withCredentials: true,
+        });
+        setProfile(res.data);
         setUsernameEmailData({
-            ...usernameEmailData,
-            [e.target.name]: e.target.value,
+          username: res.data.username,
+          email: res.data.email,
         });
+      } catch (err) {
+        setError(err.response?.data?.message || 'Error loading profile');
+      }
     };
-
-    const handlePasswordChange = (e) => {
-        setPasswordData({
-            ...passwordData,
-            [e.target.name]: e.target.value,
+    const fetchPlaylist = async () => {
+      try {
+        const res = await axios.get('/api/playlists/', {
+          withCredentials: true,
         });
-    };
-
-    const handleUsernameEmailSubmit = async (e) => {
-        e.preventDefault();
-        setUpdateError("");
-        setMessage("");
-        try {
-            const res = await axios.put("/api/users/profile", usernameEmailData, {
-                withCredentials: true,
-            });
-            setMessage(res.data.message);
-        } catch (err) {
-            setUpdateError(err.response?.data?.message || "Error updating profile");
+        if (!res.data || !res.data.songs) {
+          console.log('Playlist is empty or not found');
+        } else {
+          console.log('Got the playlist. ', res.data);
         }
+        setPlaylist(res.data.songs || []);
+      } catch (err) {
+        console.error('Failed to load playlist from react.', err);
+      }
     };
 
-    const handlePasswordSubmit = async (e) => {
-        e.preventDefault();
-        setUpdateError("");
-        setMessage("");
-        try {
-            const res = await axios.put("/api/users/profile/password", passwordData, {
-                withCredentials: true,
-            });
-            setMessage(res.data.message);
-        } catch (err) {
-            setUpdateError(err.response?.data?.message || "Error updating password");
-        }
+    const fetchPermissions = async () => {
+      try {
+        const res = await axios.get('/api/permissions/', {
+          withCredentials: true,
+        });
+        setPermissions(res.data);
+      } catch (err) {
+        console.error('Failed to fetch permissions', err);
+      }
     };
 
-    const handleLogout = async () => {
-        try {
-            await axios.post("/api/users/logout", {}, { withCredentials: true });
-            navigate("/");
-        } catch (err) {
-            setError(err.response?.data?.message || "Error logging out");
-        }
-    };
+    fetchProfile();
+    fetchPlaylist();
+    fetchPermissions();
+  }, []);
 
-    const handleDeleteSong = async (title, artist) => {
-        try {
-            await axios.delete("/api/playlists/delete", {
-                data: { songName: title, artist },
-                withCredentials: true,
-            });
+  const handleUsernameEmailChange = (e) => {
+    setUsernameEmailData({
+      ...usernameEmailData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-            setPlaylist((prev) =>
-                prev.filter((song) => !(song.title === title && song.artist === artist))
-            );
-        } catch (err) {
-            console.error("Failed to delete song", err);
-        }
-    };
+  const handlePasswordChange = (e) => {
+    setPasswordData({
+      ...passwordData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-    const handleAddDummy = async () => {
-        try {
-            await axios.post(
-                "/api/playlists/add",
-                { songName: "Dummy Song", artist: "The Testers" },
-                { withCredentials: true }
-            );
-            // Re-fetch playlist after adding
-            const res = await axios.get("/api/playlists/", {
-                withCredentials: true,
-            });
-            setPlaylist(res.data.songs || []);
-        } catch (err) {
-            console.error("Failed to add dummy song", err);
-        }
-    };
+  const handleUsernameEmailSubmit = async (e) => {
+    e.preventDefault();
+    setUpdateError('');
+    setMessage('');
+    try {
+      const res = await axios.put('/api/users/profile', usernameEmailData, {
+        withCredentials: true,
+      });
+      setMessage(res.data.message);
+    } catch (err) {
+      setUpdateError(err.response?.data?.message || 'Error updating profile');
+    }
+  };
 
-    if (error) return <p>{error}</p>;
-    if (!profile) return <p>Loading...</p>;
+  const handlePasswordSubmit = async (e) => {
+    e.preventDefault();
+    setUpdateError('');
+    setMessage('');
+    try {
+      const res = await axios.put('/api/users/profile/password', passwordData, {
+        withCredentials: true,
+      });
+      setMessage(res.data.message);
+    } catch (err) {
+      setUpdateError(err.response?.data?.message || 'Error updating password');
+    }
+  };
 
-    return (
-        <div className="form-container">
-            <h2>Welcome, {profile.username}!</h2>
-            <p>Email: {profile.email}</p>
+  const handleLogout = async () => {
+    try {
+      await axios.post('/api/users/logout', {}, { withCredentials: true });
+      navigate('/');
+    } catch (err) {
+      setError(err.response?.data?.message || 'Error logging out');
+    }
+  };
 
-            <button onClick={handleLogout} className="danger-button">
-                Logout
-            </button>
+  const handleDeleteSong = async (title, artist) => {
+    try {
+      await axios.delete('/api/playlists/delete', {
+        data: { songName: title, artist },
+        withCredentials: true,
+      });
 
-            <button onClick={handleAddDummy} className="primary-button">
-                Add Dummy Song to Playlist
-            </button>
+      setPlaylist((prev) =>
+        prev.filter((song) => !(song.title === title && song.artist === artist))
+      );
+    } catch (err) {
+      console.error('Failed to delete song', err);
+    }
+  };
 
-            <h3>Your Favorite Songs:</h3>
-            {playlist.length === 0 ? (
-                <p>No favorite songs saved yet. </p>
-            ) : (
-                <ul>
-                    {playlist.map((song) => (
-                        <li key={`${song.title}- ${song.artist}`} className="playlist-item">
-                            <span>
-                                <strong>{song.title}</strong> by {song.artist}
-                            </span>
-                            <button
-                                onClick={() => handleDeleteSong(song.title, song.artist)}
-                                className="danger-button small"
-                            >
-                                Delete
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-            )}
+  const handleAddDummy = async () => {
+    try {
+      await axios.post(
+        '/api/playlists/add',
+        { songName: 'Dummy Song', artist: 'The Testers' },
+        { withCredentials: true }
+      );
+      // Re-fetch playlist after adding
+      const res = await axios.get('/api/playlists/', {
+        withCredentials: true,
+      });
+      setPlaylist(res.data.songs || []);
+    } catch (err) {
+      console.error('Failed to add dummy song', err);
+    }
+  };
 
-            <form onSubmit={handleUsernameEmailSubmit}>
-                <label htmlFor="username">Username:</label>
-                <input
-                    type="text"
-                    name="username"
-                    id="username"
-                    value={usernameEmailData.username}
-                    onChange={handleUsernameEmailChange}
-                />
+  if (error) return <p>{error}</p>;
+  if (!profile) return <p>Loading...</p>;
 
-                <label htmlFor="email">Email:</label>
-                <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    value={usernameEmailData.email}
-                    onChange={handleUsernameEmailChange}
-                />
+  return (
+    <div className="form-container">
+      <h2>Welcome, {profile.username}!</h2>
+      <p>Email: {profile.email}</p>
 
-                <button type="submit">Update Username/Email</button>
-            </form>
+      <button onClick={handleLogout} className="danger-button">
+        Logout
+      </button>
 
-            <form onSubmit={handlePasswordSubmit}>
-                <label htmlFor="currentPassword">Current Password:</label>
-                <input
-                    type="password"
-                    name="currentPassword"
-                    id="currentPassword"
-                    value={passwordData.currentPassword}
-                    onChange={handlePasswordChange}
-                />
+      {permissions?.canAddSongsToPlaylist && (
+        <button onClick={handleAddDummy} className="primary-button">
+          Add Dummy Song to Playlist
+        </button>
+      )}
 
-                <label htmlFor="newPassword">New Password:</label>
-                <input
-                    type="password"
-                    name="newPassword"
-                    id="newPassword"
-                    value={passwordData.newPassword}
-                    onChange={handlePasswordChange}
-                />
+      <h3>Your Favorite Songs:</h3>
+      {playlist.length === 0 ? (
+        <p>No favorite songs saved yet. </p>
+      ) : (
+        <ul>
+          {playlist.map((song) => (
+            <li key={`${song.title}- ${song.artist}`} className="playlist-item">
+              <span>
+                <strong>{song.title}</strong> by {song.artist}
+              </span>
+              {permissions?.canDeleteSongsFromPlaylist && (
+                <button
+                  onClick={() => handleDeleteSong(song.title, song.artist)}
+                  className="danger-button small"
+                >
+                  Delete
+                </button>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
 
-                <button type="submit">Update Password</button>
-            </form>
+      <form onSubmit={handleUsernameEmailSubmit}>
+        <label htmlFor="username">Username:</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          value={usernameEmailData.username}
+          onChange={handleUsernameEmailChange}
+        />
 
-            {message && <p className="message success">{message}</p>}
-            {updateError && <p className="message error">{updateError}</p>}
-        </div>
-    );
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          value={usernameEmailData.email}
+          onChange={handleUsernameEmailChange}
+        />
+
+        <button type="submit">Update Username/Email</button>
+      </form>
+
+      <form onSubmit={handlePasswordSubmit}>
+        <label htmlFor="currentPassword">Current Password:</label>
+        <input
+          type="password"
+          name="currentPassword"
+          id="currentPassword"
+          value={passwordData.currentPassword}
+          onChange={handlePasswordChange}
+        />
+
+        <label htmlFor="newPassword">New Password:</label>
+        <input
+          type="password"
+          name="newPassword"
+          id="newPassword"
+          value={passwordData.newPassword}
+          onChange={handlePasswordChange}
+        />
+
+        <button type="submit">Update Password</button>
+      </form>
+
+      {message && <p className="message success">{message}</p>}
+      {updateError && <p className="message error">{updateError}</p>}
+    </div>
+  );
 }

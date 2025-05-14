@@ -1,27 +1,28 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 
 //pages
 import HomePage from './pages/HomePage';
 import LyricsPage from './pages/LyricsPage';
+import Dashboard from './pages/Dashboard';
 
 //user pages
 import ProfilePage from './users/Profile';
-import LoginForm  from './users/Login';
+import LoginForm from './users/Login';
 import RegisterForm from './users/Register';
 
 export default function App() {
   return (
     <>
-    <NavBar />
-    <Routes>
-      <Route path="/"         element={<HomePage />} />
-      <Route path="/lyrics/:artist/:title" element={<LyricsPage />} />
-      <Route path="/profile"  element={<ProfilePage />} />
-      <Route path="/login"    element={<LoginForm />} />
-      <Route path="/register" element={<RegisterForm />} />
-    </Routes>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/lyrics/:artist/:title" element={<LyricsPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/register" element={<RegisterForm />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
     </>
   );
 }
