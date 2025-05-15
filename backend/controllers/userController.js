@@ -2,6 +2,7 @@ import User from "../models/User.js";
 import Playlist from "../models/Playlist.js";
 const SALT_WORK_FACTOR = 10;
 import bcrypt from "bcrypt";
+import Permission from "../models/Permission.js";
 
 const registerUser = async (req, res) => {
   const { username, email, password } = req.body;
@@ -28,9 +29,15 @@ const registerUser = async (req, res) => {
     songs: []
   })
 
-  
+  // Creating the default permissions when the user is created.
+  const permissions = new Permission({
+    user: newUser._id,
+  });
+
   await newUser.save();
   await newPlaylist.save();
+  await permissions.save();
+  
   res.status(201).json({ message: "User registered successfully" });
 }
 
