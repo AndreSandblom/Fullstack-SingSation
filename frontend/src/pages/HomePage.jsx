@@ -7,7 +7,8 @@ import SongList   from '../components/SongList';
 
 export default function HomePage() {
   const navigate = useNavigate();
-  const [canSearchSongs, setCanSearchSongs] = useState(null); // null = unknown, true/false = known
+  //const [canSearchSongs, setCanSearchSongs] = useState(null); // null = unknown, true/false = known
+  const [canSearchSongs, setCanSearchSongs] = useState(true);
 
   useEffect(() => {
     const fetchPermissions = async () => {
@@ -15,9 +16,15 @@ export default function HomePage() {
         const response = await axios.get('/api/permissions/', {
           withCredentials: true,
         });
-        setCanSearchSongs(response.data.canSearchSongs === true);
+        if (response.data?.canSearchSongs === false) {
+          //disable if admin revoked access
+          setCanSearchSongs(false); 
+        }
+        //setCanSearchSongs(response.data.canSearchSongs === true);
       } catch (err) {
-        setCanSearchSongs(false); // assume no access on failure
+        //don't block access if user is not logged in or request fails
+        console.warn('Permission check skipped or failed. Search still allowed.');
+        //setCanSearchSongs(false); // assume no access on failure
       }
     };
 
