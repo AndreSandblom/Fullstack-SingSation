@@ -10,6 +10,7 @@ export default function NavBar () {
       <Link to="/login" className={styles.link}>Login</Link>
       <Link to="/register" className={styles.link}>Register</Link>
       <Link to="/profile" className={styles.link}>Profile</Link>
+      <Link to="/about" className={styles.link}>About</Link>
     </nav>
   );
 }
