@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import styles from './Profile.module.css';
 import "./Form.css";
 
 
 export default function ProfilePage() {
-  const navigate = useNavigate();
   const [profile, setProfile] = useState(null);
   const [playlist, setPlaylist] = useState([]);
   const [error, setError] = useState('');
@@ -111,15 +109,6 @@ export default function ProfilePage() {
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      await axios.post('/api/users/logout', {}, { withCredentials: true });
-      navigate('/');
-    } catch (err) {
-      setError(err.response?.data?.message || 'Error logging out');
-    }
-  };
-
   const handleDeleteSong = async (title, artist) => {
     try {
       await axios.delete('/api/playlists/delete', {
@@ -162,7 +151,6 @@ export default function ProfilePage() {
       <p>Email: {profile.email}</p>
   
       <div className={styles.actions}>
-        <button onClick={handleLogout} className="danger-button">Logout</button>
         {permissions?.canAddSongsToPlaylist && (
           <button onClick={handleAddDummy} className="primary-button">Add Dummy Song to Playlist</button>
         )}
