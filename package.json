@@ -4,9 +4,14 @@
   "main": "index.js",
   "scripts": {
     "install-all": "concurrently \"cd backend && npm install\" \"cd frontend && npm install\"",
-    "start": "concurrently \"npm run server\" \"npm run client\"",
+
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "cd backend && npm run dev",
-    "client": "cd frontend && npm run dev"
+    "client": "cd frontend && npm run dev",
+
+    "build": "cd frontend && npm run build",
+    "start": "npm run build && npm run start-server",
+    "start-server": "cd backend && npm start"
   },
   "keywords": [],
   "author": "",
