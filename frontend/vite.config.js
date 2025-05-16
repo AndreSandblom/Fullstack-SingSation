@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       // Proxy /api/* to backend on port 3001
-      '/api': 'http://localhost:3001'
+      '/api': 'https://fullstack-singsation-test.onrender.com:3001'
     }
   }
 })
