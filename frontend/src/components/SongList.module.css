@@ -3,19 +3,17 @@
     padding: 1rem;
     border-radius: 0.8rem;
     backdrop-filter: blur(0.2rem);
-    max-width: 800px;
+    max-width: 90%;
     margin: 0.5rem;
     color: rgb(254, 255, 167);
     box-shadow: 0 0 0.5rem rgba(255, 255, 255, 0.1);
   }
   
   .title {
-    color:rgb(254, 255, 167);
     font-size: 1.5rem;
     font-weight: bold;
     text-align: center;
     margin-bottom: 1.2rem;
-    text-shadow: 0 0 0.15rem #000;
   }
   
   .songItem {
@@ -25,35 +23,17 @@
     align-items: center;
   }
   
-  .button {
-    padding: 0.5rem 0.8rem;
-    font-size: 0.9rem;
-    background-color: rgb(254, 255, 167);
-    color: #111;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.2s ease;
-  }
-  
-  .button:hover {
-    background-color: #fff176;
-  }
-  
   .pagination {
     margin-top: 1.5rem;
     text-align: center;
   }
   
   .pagination button {
-    margin: 0 0.5rem;
+    margin: 1rem 1rem;
     padding: 0.5rem 0.7rem;
-    background-color: #222;
-    color: rgb(254, 255, 167);
-    border: 0.3rem solid #444;
     border-radius: 0.5rem;
     cursor: pointer;
+    
   }
   
   .pagination button:disabled {

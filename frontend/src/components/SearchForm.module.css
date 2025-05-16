@@ -17,8 +17,6 @@
   .button {
     padding: 1rem 1.2rem;
     font-size: 1rem;
-    background-color: rgb(254, 255, 167);
-    color: #111;
     border: none;
     border-radius: 0.4rem;
     cursor: pointer;
@@ -26,10 +24,7 @@
     transition: 0.2s ease;
     width: 50%;
     box-shadow: 0 0 0.3rem rgba(255, 238, 88, 0.8);
+    margin-bottom: 1rem;
   }
   
-  .button:hover {
-    background-color: #fff176;
-    box-shadow: 0 0 0.4rem rgba(255, 238, 88, 1);
-  }
   
