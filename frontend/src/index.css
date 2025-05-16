@@ -1,5 +1,6 @@
 body {
   font-family: 'Quicksand', sans-serif;
+  font-size: clamp(1rem, 1.1vw, 1.2rem);
 
   margin: 0;
   padding: 0;
@@ -18,8 +19,19 @@ h1, h2, h3, h4, h5 {
   text-shadow: 0 0 0.2rem rgba(0,0,0,0.5);
 }
 
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+h2 {
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+}
+h3 {
+  font-size: clamp(1.3rem, 3vw, 2rem);
+}
+
 button {
   font-family: 'Quicksand', sans-serif;
+  font-size: clamp(0.85rem, 1vw, 1.1rem); 
   padding: 0.5rem 0.8rem;
   font-size: 0.9rem;
   background-color: rgb(254, 255, 167);
@@ -35,4 +47,18 @@ button:hover {
   background-color: #fff176;
   transform: scale(1.05);
   box-shadow: 0 0 8px #ffee58, 0 0 15px #ffee58;
+}
+
+.overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.05); /* lighter, more neutral */
+  backdrop-filter: blur(0.2rem);
+  box-shadow: 0 0 0.5rem rgba(255, 255, 255, 0.1); /* soft glow */
+  border-radius: 1rem;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  margin: clamp(2rem, 8vh, 5rem) auto;
+  max-width: clamp(20rem, 90vw, 70rem);
+  color: rgb(254, 255, 167);
 }

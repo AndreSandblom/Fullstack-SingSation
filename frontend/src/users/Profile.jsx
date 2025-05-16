@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './Form.css';
-
 import styles from './Profile.module.css';
+import "./Form.css";
 
 
 export default function ProfilePage() {
@@ -158,90 +157,90 @@ export default function ProfilePage() {
 
   return (
     <div className={styles.container}>
-    <div className={styles.overlay}>
+    <div className="overlay">
       <h2>Welcome, {profile.username}!</h2>
       <p>Email: {profile.email}</p>
-
-      <button onClick={handleLogout} className="danger-button">
-        Logout
-      </button>
-
-      {permissions?.canAddSongsToPlaylist && (
-        <button onClick={handleAddDummy} className="primary-button">
-          Add Dummy Song to Playlist
-        </button>
-      )}
-
-      <h3>Your Favorite Songs:</h3>
-      {playlist.length === 0 ? (
-        <p>No favorite songs saved yet. </p>
-      ) : (
-        <ul>
-          {playlist.map((song) => (
-            <li key={`${song.title}- ${song.artist}`} className="playlist-item">
-              <span>
-                <strong>{song.title}</strong> by {song.artist}
-              </span>
-              {permissions?.canDeleteSongsFromPlaylist && (
-                <button
-                  onClick={() => handleDeleteSong(song.title, song.artist)}
-                  className="danger-button small"
-                >
-                  Delete
-                </button>
-              )}
-            </li>
-          ))}
-        </ul>
-      )}
-
-      <form onSubmit={handleUsernameEmailSubmit}>
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          value={usernameEmailData.username}
-          onChange={handleUsernameEmailChange}
-        />
-
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={usernameEmailData.email}
-          onChange={handleUsernameEmailChange}
-        />
-
-        <button type="submit">Update Username/Email</button>
-      </form>
-
-      <form onSubmit={handlePasswordSubmit}>
-        <label htmlFor="currentPassword">Current Password:</label>
-        <input
-          type="password"
-          name="currentPassword"
-          id="currentPassword"
-          value={passwordData.currentPassword}
-          onChange={handlePasswordChange}
-        />
-
-        <label htmlFor="newPassword">New Password:</label>
-        <input
-          type="password"
-          name="newPassword"
-          id="newPassword"
-          value={passwordData.newPassword}
-          onChange={handlePasswordChange}
-        />
-
-        <button type="submit">Update Password</button>
-      </form>
-
+  
+      <div className={styles.actions}>
+        <button onClick={handleLogout} className="danger-button">Logout</button>
+        {permissions?.canAddSongsToPlaylist && (
+          <button onClick={handleAddDummy} className="primary-button">Add Dummy Song to Playlist</button>
+        )}
+      </div>
+  
+      <section className={styles.sectionBox}>
+        <h3>Your Favorite Songs</h3>
+        {playlist.length === 0 ? (
+          <p>No favorite songs saved yet.</p>
+        ) : (
+          <ul>
+            {playlist.map((song) => (
+              <li key={`${song.title}-${song.artist}`} className="playlist-item">
+                <span><strong>{song.title}</strong> by {song.artist}</span>
+                {permissions?.canDeleteSongsFromPlaylist && (
+                  <button
+                    onClick={() => handleDeleteSong(song.title, song.artist)}
+                    className="danger-button small"
+                  >
+                    Delete
+                  </button>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+  
+      <section className={styles.sectionBox}>
+        <h3>Update Username & Email</h3>
+        <form onSubmit={handleUsernameEmailSubmit}>
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            value={usernameEmailData.username}
+            onChange={handleUsernameEmailChange}
+          />
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value={usernameEmailData.email}
+            onChange={handleUsernameEmailChange}
+          />
+          <button type="submit">Update Username/Email</button>
+        </form>
+      </section>
+  
+      <section className={styles.sectionBox}>
+        <h3>Change Password</h3>
+        <form onSubmit={handlePasswordSubmit}>
+          <label htmlFor="currentPassword">Current Password:</label>
+          <input
+            type="password"
+            name="currentPassword"
+            id="currentPassword"
+            value={passwordData.currentPassword}
+            onChange={handlePasswordChange}
+          />
+          <label htmlFor="newPassword">New Password:</label>
+          <input
+            type="password"
+            name="newPassword"
+            id="newPassword"
+            value={passwordData.newPassword}
+            onChange={handlePasswordChange}
+          />
+          <button type="submit">Update Password</button>
+        </form>
+      </section>
+  
       {message && <p className="message success">{message}</p>}
       {updateError && <p className="message error">{updateError}</p>}
     </div>
-    </div>
+  </div>
+  
   );
 }

@@ -1,26 +1,34 @@
 .container {
+    display: flex;
+    flex-direction: column;
     background-color: rgba(255, 255, 255, 0.05);
     padding: 1rem;
     border-radius: 0.8rem;
     backdrop-filter: blur(0.2rem);
-    max-width: 90%;
     margin: 0.5rem;
     color: rgb(254, 255, 167);
     box-shadow: 0 0 0.5rem rgba(255, 255, 255, 0.1);
   }
   
   .title {
-    font-size: 1.5rem;
     font-weight: bold;
     text-align: center;
     margin-bottom: 1.2rem;
   }
   
   .songItem {
-    margin: 0.7rem 0;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; 
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+
+.songItem button {
+    min-width: 10rem;
+    width: clamp(8rem, 30%, 12rem);
+    text-align: center;
   }
   
   .pagination {
@@ -29,11 +37,14 @@
   }
   
   .pagination button {
-    margin: 1rem 1rem;
-    padding: 0.5rem 0.7rem;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+    padding: 0.5rem 1.2rem;
+    margin: 1rem 0.5rem;
     border-radius: 0.5rem;
-    cursor: pointer;
-    
+    font-weight: bold;
+    min-width: clamp(6rem, 20vw, 10rem);
+    box-shadow: 0 0 0.3rem rgba(255, 238, 88, 0.8);
+    transition: all 0.2s ease;
   }
   
   .pagination button:disabled {

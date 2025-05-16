@@ -39,7 +39,7 @@ export default function HomePage() {
 
   return (
     <div className={styles.container}>
-    <div className={styles.overlay}>
+    <div className="overlay">
       <h1 className={styles.title}>SingSation</h1>
       {canSearchSongs && <SearchForm onSearch={goToLyrics} />}
       <SongList onSongSelect={goToLyrics} />
