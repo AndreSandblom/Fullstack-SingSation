@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../users/Form.css';
 
+import styles from './Dashboard.module.css';
+
 const Dashboard = () => {
   const [username, setUsername] = useState('');
   const [permissions, setPermissions] = useState(null);
@@ -90,68 +92,70 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="form-container">
+    <div className={styles.dashboardContainer}>
+      <div className="overlay">
       <h2>User Permissions Dashboard</h2>
 
-      <div className="flex gap-2 mb-4">
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Enter username"
-          className="flex-1"
-        />
-        <button
-          onClick={handleSearch}
-          disabled={loading || !username}
-          className="button"
-        >
-          {loading ? 'Searching...' : 'Search'}
-        </button>
-      </div>
+      <div className={styles.searchSection}>
+  <input
+    type="text"
+    value={username}
+    onChange={(e) => setUsername(e.target.value)}
+    placeholder="Enter username"
+    className={styles.input}
+  />
+  <button
+    onClick={handleSearch}
+    disabled={loading || !username}
+    className={styles.searchButton}
+  >
+    {loading ? 'Searching...' : 'Search'}
+  </button>
+</div>
 
       {status && <p className="message error">{status}</p>}
 
       {permissions && (
-        <div className="bg-gray-100 p-4 rounded shadow">
-          <h3 className="text-lg font-semibold mb-3">Permissions</h3>
-          <form className="space-y-3">
-            <Checkbox
-              label="Can Search Songs"
-              value={permissions.canSearchSongs}
-              onChange={() => handleCheckbox('canSearchSongs')}
-            />
-            <Checkbox
-              label="Can Add Songs to Playlist"
-              value={permissions.canAddSongsToPlaylist}
-              onChange={() => handleCheckbox('canAddSongsToPlaylist')}
-            />
-            <Checkbox
-              label="Can Delete Songs from Playlist"
-              value={permissions.canDeleteSongsFromPlaylist}
-              onChange={() => handleCheckbox('canDeleteSongsFromPlaylist')}
-            />
-          </form>
-          <button onClick={handleSave} className="button">
-            Save Changes
-          </button>
-        </div>
-      )}
+  <div className={styles.permissionsBox}>
+    <h3 className={styles.permissionsTitle}>Permissions</h3>
+    <form className={styles.permissionsForm}>
+      <Checkbox
+        label="Can Search Songs"
+        value={permissions.canSearchSongs}
+        onChange={() => handleCheckbox('canSearchSongs')}
+      />
+      <Checkbox
+        label="Can Add Songs to Playlist"
+        value={permissions.canAddSongsToPlaylist}
+        onChange={() => handleCheckbox('canAddSongsToPlaylist')}
+      />
+      <Checkbox
+        label="Can Delete Songs from Playlist"
+        value={permissions.canDeleteSongsFromPlaylist}
+        onChange={() => handleCheckbox('canDeleteSongsFromPlaylist')}
+      />
+    </form>
+    <button onClick={handleSave} className={styles.saveButton}>
+      Save Changes
+    </button>
+  </div>
+)}
     </div>
+  </div>
   );
 };
 
 const Checkbox = ({ label, value, onChange }) => (
-  <div className="flex items-center space-x-2">
-    <label className="label">{label}</label>
-    <label className="inline-flex items-center cursor-pointer">
+  <div className={styles.checkboxWrapper}>
+    <span className={styles.label}>{label}</span>
+    <label className={styles.switch}>
       <input
         type="checkbox"
-        className="sr-only peer"
+        className={styles.hiddenCheckbox}
         checked={value}
         onChange={onChange}
       />
-      <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 transition-all" />
+      <span className={styles.slider}></span>
     </label>
   </div>
 );

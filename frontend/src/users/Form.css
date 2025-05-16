@@ -1,82 +1,77 @@
 .form-container {
-    max-width: 400px;
-    margin: 60px auto;
-    padding: 24px;
-    border-radius: 12px;
-    background-color: #fff;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    font-family: system-ui, sans-serif;
+  max-width: clamp(28rem, 50vw, 50rem);
+  margin: clamp(3rem, 10vh, 15rem) auto 2rem auto;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.1); 
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(0.25rem);
+  color: rgb(254, 255, 167);
+  font-family: 'Quicksand', sans-serif;
   }
   
   .form-container h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
+    margin-bottom: 1.5rem;
     font-weight: 600;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
     text-align: center;
+    color: #00FFF7;
+    text-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.5);
   }
   
   form {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 1.5rem;
   }
   
   input {
-    padding: 10px 14px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    padding: 0.625rem 0.875rem;      
+    font-size: 1rem;                 
+    border: 0.15rem solid #ccc;
+    border-radius: 0.5rem;            
     outline: none;
     transition: border 0.2s;
   }
   
   input:focus {
-    border-color: #007bff;
-  }
-  
-  button {
-    padding: 12px;
-    font-size: 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
+    border: 0.25rem solid #fff176;
   }
   
   .message {
-    font-size: 14px;
+    font-size: 1.3rem;
     text-align: center;
   }
   
   .success {
-    color: green;
+    color: #39FF14;
+    text-shadow: 0 0 0.3rem rgba(57, 255, 20, 0.7), 0 0 0.6rem #39FF14;
   }
   
   .error {
-    color: red;
-  }
-  
-  label {
-    font-size: 14px;
-    margin-top: 8px;
-    margin-bottom: 4px;
-    display: block;
-    color: #333;
+    color: #FF073A;
+    text-shadow: 0 0 0.3rem rgba(255, 7, 58, 0.7), 0 0 0.6rem #FF073A;
   }
   
   button.danger-button {
-    background-color: #dc3545;
-    margin-top: 16px;
+    background-color: #FF69B4;
+    color: #fff;
+    margin-top: 1.5rem;
+    width: 15rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   
   button.danger-button:hover {
-    background-color: #b02a37;
+    background-color: #FF1493; 
+    transform: scale(1.05);
+    box-shadow:
+      0 0 0.4rem #FF1493,
+      0 0 0.8rem #FF1493,
+      0 0 1.4rem #FF1493;
   }
 
   .playlist-item {
@@ -102,11 +97,23 @@
 
 .danger-button.small {
   font-size: 0.8rem;
-  padding: 2px 8px;
-  background-color: #c0392b;
-  color: white;
+  padding: 0.5rem;
+  background-color: #FF69B4;
+  color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 0.4rem;
   cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  /* soft glow for base */
+  box-shadow: 0 0 0.3rem rgba(255, 105, 180, 0.5);
+}
+
+.danger-button.small:hover {
+  background-color: #FF1493; 
+  transform: scale(1.05);
+  box-shadow:
+    0 0 0.4rem #FF1493,
+    0 0 0.8rem #FF1493,
+    0 0 1.4rem #FF1493;
 }
   

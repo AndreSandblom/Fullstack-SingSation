@@ -1,0 +1,93 @@
+.dashboardContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem;
+    min-height: 100vh;
+  }
+  
+  .searchSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .input {
+    padding: 0.6rem 0.8rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  /* Checkbox styling */
+  .permissionsForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .checkboxWrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .label {
+    font-size: 1rem;
+    color: rgb(254, 255, 167);
+    text-shadow: 0 0 0.15rem #00FFF7;
+  }
+
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 3.5rem;
+    height: 1.75rem;
+  }
+  
+  .hiddenCheckbox {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0;
+    right: 0; bottom: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: 0.4s;
+    border-radius: 1rem;
+    box-shadow: 0 0 0.25rem #555;
+  }
+  
+  .slider::before {
+    position: absolute;
+    content: "";
+    height: 1.2rem;
+    width: 1.2rem;
+    left: 0.3rem;
+    bottom: 0.25rem;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 50%;
+    box-shadow: 0 0 0.2rem #ccc;
+  }
+
+  .hiddenCheckbox:checked + .slider {
+    background-color: #00FFF7;
+    box-shadow: 0 0 0.5rem #00FFF7, 0 0 1rem #00FFF7;
+  }
+  
+  .hiddenCheckbox:checked + .slider::before {
+    transform: translateX(1.6rem);
+    background-color: rgb(254, 255, 167);
+    box-shadow: 0 0 0.3rem #00FFF7;
+  }
+  

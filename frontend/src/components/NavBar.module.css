@@ -1,0 +1,30 @@
+.navbar {
+    width: 100%;
+    padding: 1rem 2rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(0.5rem);
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  
+  .link {
+    color:  rgb(254, 255, 167);
+    font-weight: bold;
+    text-decoration: none;
+    font-size: clamp(1.1rem, 1.5vw, 1.5rem);
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+  }
+  
+  .link:hover {
+    color: #ffee58;
+    text-shadow: 0 0 6px #ffee58, 0 0 12px #ffee58, 0 0 18px #ffee58;
+    transform: scale(1.05);
+  }
+  
