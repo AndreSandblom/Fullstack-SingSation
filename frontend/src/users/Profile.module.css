@@ -5,11 +5,6 @@
     background-size: cover;
     background-attachment: fixed;
     color: rgb(254, 255, 167);
-    /*neon glow*/
-    text-shadow:
-    0 0 0.1rem #fff,
-    0 0 0.15rem #00fff7,
-    0 0 0.3rem #e75480;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,26 +13,32 @@
   }
   
   .overlay {
-    background-color: rgb(26, 26, 29, 0.7);
-    padding: 1rem;
+    background-color: rgba(26, 26, 29, 0.5);
+    padding: 2rem;
     border-radius: 1rem;
     max-width: 800px;
     width: 100%;
-    backdrop-filter: blur(0.2rem);
+    backdrop-filter: blur(0.1rem);
+    color: rgb(254, 255, 167);
   }
   
   .title {
     font-size: 1.8rem;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 2rem;
-    color: #00FFF7;
+    margin-bottom: 1rem;
   }
-  
-  .lyrics {
-    white-space: pre-wrap;
-    font-size: 1rem;
-    line-height: 1.5;
-    text-align: center;
+
+  label {
+    color: rgb(254, 255, 167);
+    display: block;
+    margin-bottom: 0.3rem;
+    margin-top: 1rem;
+    font-weight: bold;
+  }
+
+  button {
+    margin-top: 1rem;
+    margin-right: 1rem;
   }
   

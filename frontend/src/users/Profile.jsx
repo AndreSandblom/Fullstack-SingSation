@@ -3,6 +3,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Form.css';
 
+import styles from './Profile.module.css';
+
+
 export default function ProfilePage() {
   const navigate = useNavigate();
   const [profile, setProfile] = useState(null);
@@ -154,7 +157,8 @@ export default function ProfilePage() {
   if (!profile) return <p>Loading...</p>;
 
   return (
-    <div className="form-container">
+    <div className={styles.container}>
+    <div className={styles.overlay}>
       <h2>Welcome, {profile.username}!</h2>
       <p>Email: {profile.email}</p>
 
@@ -237,6 +241,7 @@ export default function ProfilePage() {
 
       {message && <p className="message success">{message}</p>}
       {updateError && <p className="message error">{updateError}</p>}
+    </div>
     </div>
   );
 }

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../users/Form.css';
 
+import styles from './Dashboard.module.css';
+
 const Dashboard = () => {
   const [username, setUsername] = useState('');
   const [permissions, setPermissions] = useState(null);
@@ -90,7 +92,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="form-container">
+    <div className={styles.dashboardContainer}>
       <h2>User Permissions Dashboard</h2>
 
       <div className="flex gap-2 mb-4">
@@ -143,7 +145,7 @@ const Dashboard = () => {
 
 const Checkbox = ({ label, value, onChange }) => (
   <div className="flex items-center space-x-2">
-    <label className="label">{label}</label>
+    <span className={styles.label}>{label}</span>
     <label className="inline-flex items-center cursor-pointer">
       <input
         type="checkbox"

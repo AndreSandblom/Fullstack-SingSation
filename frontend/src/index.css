@@ -1,3 +1,14 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+body {
+  font-family: 'Quicksand', sans-serif;
+
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+
+  background: url('/assets/lyrics2.jpg') center top repeat-y;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-color: black; /* fallback */
+  color: rgb(254, 255, 167);
+}

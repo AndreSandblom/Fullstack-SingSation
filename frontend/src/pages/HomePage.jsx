@@ -5,6 +5,8 @@ import axios from 'axios';
 import SearchForm from '../components/SearchForm';
 import SongList   from '../components/SongList';
 
+import styles from './HomePage.module.css';
+
 export default function HomePage() {
   const navigate = useNavigate();
   //const [canSearchSongs, setCanSearchSongs] = useState(null); // null = unknown, true/false = known
@@ -36,13 +38,12 @@ export default function HomePage() {
   };
 
   return (
-    <div style={{ fontFamily: 'sans-serif' }}>
-      <div style={{ padding: '2rem' }}></div>
-      <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
-      <h1>SingSation</h1>
+    <div className={styles.container}>
+    <div className={styles.overlay}>
+      <h1 className={styles.title}>SingSation</h1>
       {canSearchSongs && <SearchForm onSearch={goToLyrics} />}
-      <SongList   onSongSelect={goToLyrics} />
-      </div>
+      <SongList onSongSelect={goToLyrics} />
     </div>
-  );
+  </div>
+);
 }
