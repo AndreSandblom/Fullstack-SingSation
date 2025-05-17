@@ -132,8 +132,8 @@ const Dashboard = () => {
 
   {averageSongs !== null && totalUsers !== null && (
     <div className={styles.permissionsBox}>
-      <p><strong>Total Users:</strong> {totalUsers}</p>
-      <p><strong>Average Songs per Playlist:</strong> {averageSongs.toFixed(2)}</p>
+      <p><strong>Total Number of Users:</strong> {totalUsers}</p>
+      <p><strong>Average Number of Songs per Playlist:</strong> {averageSongs.toFixed(2)}</p>
     </div>
   )}
       {permissions && (
