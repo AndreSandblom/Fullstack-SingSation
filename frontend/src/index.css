@@ -5,6 +5,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  overflow-x: hidden;
 
   background: url('/assets/lyrics2.jpg') center top repeat-y;
   background-size: cover;
@@ -53,12 +54,24 @@ button:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.05); /* lighter, more neutral */
+
+  background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(0.2rem);
-  box-shadow: 0 0 0.5rem rgba(255, 255, 255, 0.1); /* soft glow */
+  box-shadow: 0 0 0.5rem rgba(255, 255, 255, 0.1);
   border-radius: 1rem;
+  
   padding: clamp(1.5rem, 4vw, 3rem);
   margin: clamp(2rem, 8vh, 5rem) auto;
-  max-width: clamp(20rem, 90vw, 70rem);
-  color: rgb(254, 255, 167);
+  width: 100%;
+  max-width: 70rem;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: clamp(1rem, 5vw, 2rem);
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
