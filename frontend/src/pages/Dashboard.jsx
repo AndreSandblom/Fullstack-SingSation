@@ -92,7 +92,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className={styles.dashboardContainer}>
+    <div className={styles.container}>
       <div className="overlay">
       <h2>User Permissions Dashboard</h2>
 

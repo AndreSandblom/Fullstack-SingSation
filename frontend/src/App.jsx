@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
 import LyricsPage from './pages/LyricsPage';
 import Dashboard from './pages/Dashboard';
+import AboutPage from './pages/AboutPage';
 
 //user pages
 import ProfilePage from './users/Profile';
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/about" element={<AboutPage />} />
       </Routes>
     </>
   );

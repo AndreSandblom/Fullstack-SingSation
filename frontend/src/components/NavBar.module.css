@@ -1,22 +1,32 @@
 .navbar {
     width: 100%;
-    padding: 1rem 2rem;
     background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(0.5rem);
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
     position: sticky;
     top: 0;
     z-index: 1000;
+    padding: 0;
   }
   
+  .navInner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .navLinks {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex: 1;
+  }  
   
   .link {
     color:  rgb(254, 255, 167);
     font-weight: bold;
     text-decoration: none;
-    font-size: clamp(1.1rem, 1.5vw, 1.5rem);
+    font-size: clamp(1.2rem, 1.5vw, 1.5rem);
     padding: 0.4rem 0.8rem;
     border-radius: 0.5rem;
     transition: all 0.2s ease;
@@ -26,5 +36,28 @@
     color: #ffee58;
     text-shadow: 0 0 6px #ffee58, 0 0 12px #ffee58, 0 0 18px #ffee58;
     transform: scale(1.05);
+  }
+
+.logoutButton {
+    background-color: #FF69B4;
+    color: #fff;
+    margin: 1rem 1rem;
+    width: clamp(8rem, 10vw, 10rem);
+    font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+    width: 10rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+.logoutButton:hover {
+    background-color: #FF1493; 
+    transform: scale(1.05);
+    box-shadow:
+      0 0 0.4rem #FF1493,
+      0 0 0.8rem #FF1493,
+      0 0 1.4rem #FF1493;
   }
   

@@ -36,7 +36,8 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="form-container">
+    <div className="container">
+      <div className="overlay">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -59,6 +60,7 @@ export default function LoginForm() {
         {message && <p className="message success">{message}</p>}
         {error && <p className="message error">{error}</p>}
       </form>
+      </div>
     </div>
   );
 }

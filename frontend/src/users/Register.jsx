@@ -34,7 +34,8 @@ export default function RegisterForm() {
   };
 
   return (
-    <div class="form-container">
+    <div className="container">
+      <div className="overlay">
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -65,6 +66,7 @@ export default function RegisterForm() {
         {message && <p className="message success">{message}</p>}
         {error && <p className="message error">{error}</p>}
       </form>
+      </div>
     </div>
   );
 }
