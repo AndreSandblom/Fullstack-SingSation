@@ -6,6 +6,7 @@ import axios from 'axios';
 
 export default function NavBar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate(); 
   const [error, setError] = useState(null);
   const location = useLocation(); 
@@ -22,9 +23,14 @@ export default function NavBar() {
 
   useEffect(() => {
     axios
-      .get('/api/users/profile', { withCredentials: true })
-      .then(() => setIsLoggedIn(true))
-      .catch(() => setIsLoggedIn(false));
+    .get('/api/users/profile', { withCredentials: true })
+    .then(() => setIsLoggedIn(true))
+    .catch(() => setIsLoggedIn(false));
+
+    axios
+    .get('/api/permissions/', { withCredentials: true })
+    .then((res) => setIsAdmin(res.data.isAdmin === true))
+    .catch(() => setIsAdmin(false));
   }, [location]);
 
   return (
@@ -41,6 +47,9 @@ export default function NavBar() {
           )}
           {isLoggedIn && <Link to="/profile" className={styles.link}>Profile</Link>}
           <Link to="/about" className={styles.link}>About</Link>
+          {isAdmin && (
+          <Link to="/dashboard" className={styles.link}>Dashboard</Link>
+        )}
         </div>
         {isLoggedIn && (
           <button onClick={handleLogout} className={`${styles.link} ${styles.logoutButton}`}>

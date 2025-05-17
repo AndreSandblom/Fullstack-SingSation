@@ -26,7 +26,7 @@ export default function SongList({ onSongSelect }) {
       <div className={styles.container}>
       <h2 className={styles.title}>Song List</h2>
       <ul>
-        {songs.map((song, index) => (
+        {songs?.map((song, index) => (
           <li key={index} className={styles.songItem}>
             <span>
               <strong>{song.title}</strong> by {song.artist}
