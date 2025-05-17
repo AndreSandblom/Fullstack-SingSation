@@ -6,19 +6,19 @@ const teamMembers = [
         name: 'Andre',
         role: 'App foundations & Playlist logic',
         photo: '/assets/andre.jpg',
-        contribution: 'Came up with the original idea, set up project and implemented playlist functionality including adding favorite songs and integrating it with user authentication.',
+        contribution: 'Came up with the original idea, set up the entire project structure and implemented playlist functionality including adding favorite songs feature and integrating it with user authentication.',
       },
       {
         name: 'Dario',
         role: 'User Authentication & Admin Permissions',
         photo: '/assets/dario.jpg',
-        contribution: 'Implemented user authentication & authorisation, set up the admin role and permissions system, and configured the MongoDB backend.',
+        contribution: 'Implemented user authentication and authorisation, developed the admin role and permissions system, configured the MongoDB backend, and handled the app deployment',
       },
       {
         name: 'Kate',
         role: 'UI Design & External APIs integration',
         photo: '/assets/kate.jpg',
-        contribution: 'Designed the full UI and responsive layout, implemented dynamic lyrics search and display using the lyrics.ovh API, integrated Spotify links, and created the About page.',
+        contribution: 'Created the complete app UI with responsive design and interactive user features, implemented dynamic lyrics search and display using the lyrics.ovh API, and integrated Spotify API for song playback links.',
       },
 ]
 
