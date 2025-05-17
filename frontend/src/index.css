@@ -65,6 +65,7 @@ button:hover {
   width: 100%;
   max-width: 70rem;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .container {
