@@ -60,4 +60,24 @@
       0 0 0.8rem #FF1493,
       0 0 1.4rem #FF1493;
   }
+
+  @media (max-width: 600px) {
+    .navInner {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+  
+    .navLinks {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+  
+    .logoutButton {
+      margin: 0.5rem auto;
+      width: clamp(7rem, 60vw, 10rem);
+    }
+  }
+  
   

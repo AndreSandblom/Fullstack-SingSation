@@ -25,7 +25,7 @@ const teamMembers = [
 export default function About() {
     return (
       <div className={styles.description}>
-        <h1>About <span className="appLogo">SingSation</span></h1>
+        <h1 className="appLogo">SingSation</h1>
         <p >
         <strong>SingSation</strong> is a karaoke-inspired sing-along lyrics app that lets users search for, view, save, and manage their favorite song lyrics. 
           </p>
