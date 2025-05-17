@@ -1,3 +1,7 @@
+html, body {
+  height: 100%;
+}
+
 body {
   font-family: 'Quicksand', sans-serif;
   font-size: clamp(1rem, 1.1vw, 1.2rem);
@@ -66,6 +70,7 @@ button:hover {
   max-width: 70rem;
   box-sizing: border-box;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .container {
@@ -87,4 +92,12 @@ button:hover {
   color: #00ffe0;
   text-shadow: 0 0 0.3rem #00ffe0, 0 0 0.6rem rgba(0, 255, 224, 0.4);
   font-size: clamp(2rem, 4vw, 3rem); 
+}
+
+@media (max-width: 768px) {
+  body {
+    background-attachment: fixed; 
+    background-position: center top;
+    background-size: cover;
+  }
 }
