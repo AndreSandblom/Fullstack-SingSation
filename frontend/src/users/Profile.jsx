@@ -145,7 +145,7 @@ export default function ProfilePage() {
   if (!profile) return <p>Loading...</p>;
 
   return (
-    <div className={styles.container}>
+    <div className="container">
     <div className="overlay">
       <h2>Welcome, {profile.username}!</h2>
       <p>Email: {profile.email}</p>
@@ -156,7 +156,7 @@ export default function ProfilePage() {
         )}
       </div>
   
-      <section className={styles.sectionBox}>
+      <section className="sectionBox">
         <h3>Your Favorite Songs</h3>
         {playlist.length === 0 ? (
           <p>No favorite songs saved yet.</p>
@@ -179,7 +179,7 @@ export default function ProfilePage() {
         )}
       </section>
   
-      <section className={styles.sectionBox}>
+      <section className="sectionBox">
         <h3>Update Username & Email</h3>
         <form onSubmit={handleUsernameEmailSubmit}>
           <label htmlFor="username">Username:</label>
@@ -202,7 +202,7 @@ export default function ProfilePage() {
         </form>
       </section>
   
-      <section className={styles.sectionBox}>
+      <section className="sectionBox">
         <h3>Change Password</h3>
         <form onSubmit={handlePasswordSubmit}>
           <label htmlFor="currentPassword">Current Password:</label>

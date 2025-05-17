@@ -94,6 +94,16 @@ button:hover {
   font-size: clamp(2rem, 4vw, 3rem); 
 }
 
+.sectionBox {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(0.2rem);
+  width: 70%;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 0.5rem rgba(255, 255, 255, 0.1);
+  margin-bottom: 2rem;
+}
+
 @media (max-width: 768px) {
   body {
     background-attachment: fixed; 
