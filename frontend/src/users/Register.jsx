@@ -34,7 +34,7 @@ export default function RegisterForm() {
   };
 
   return (
-    <div class="form-container">
+    <div class="container">
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <input

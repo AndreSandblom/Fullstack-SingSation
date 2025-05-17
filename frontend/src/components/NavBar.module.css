@@ -1,14 +1,18 @@
 .navbar {
     width: 100%;
-    padding: 1rem 2rem;
     background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(0.5rem);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     position: sticky;
     top: 0;
     z-index: 1000;
+    padding: 0;
+  }
+  
+  .navInner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
   }
   
   .navLinks {
