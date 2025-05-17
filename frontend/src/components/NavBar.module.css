@@ -61,7 +61,7 @@
       0 0 1.4rem #FF1493;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     .navInner {
       flex-direction: column;
       align-items: center;
