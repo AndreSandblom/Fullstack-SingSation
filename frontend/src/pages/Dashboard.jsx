@@ -107,60 +107,67 @@ const Dashboard = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className="overlay">
-      <h2>User Permissions Dashboard</h2>
-
-      <div className={styles.searchSection}>
-  <input
-    type="text"
-    value={username}
-    onChange={(e) => setUsername(e.target.value)}
-    placeholder="Enter username"
-    className={styles.input}
-  />
-  <button
-    onClick={handleSearch}
-    disabled={loading || !username}
-    className={styles.searchButton}
-  >
-    {loading ? 'Searching...' : 'Search'}
-  </button>
-</div>
-
-  {status && <p className="message error">{status}</p>}
-
-  {averageSongs !== null && totalUsers !== null && (
-    <div className={styles.permissionsBox}>
-      <p><strong>Total Number of Users:</strong> {totalUsers}</p>
-      <p><strong>Average Number of Songs per Playlist:</strong> {averageSongs.toFixed(2)}</p>
-    </div>
-  )}
+    <div className="container">
+    <div className="overlay">
+      <h2>Admin Dashboard</h2>
+      {status && <p className="message error">{status}</p>}
+  
+      {averageSongs !== null && totalUsers !== null && (
+        <section className="sectionBox">
+          <div className={styles.statisticsBox}>
+          <h3 className={styles.permissionsTitle}>Statistics</h3>
+          <p><strong>Total Number of Users:</strong> {totalUsers}</p>
+          <p><strong>Average Number of Songs per Playlist:</strong> {averageSongs.toFixed(2)}</p>
+          </div>
+        </section>
+      )}
+  
+      <section className="sectionBox">
+        <div className={styles.searchSection}>
+        <h3 className={styles.permissionsTitle}>Permissions</h3>
+        <h4 className={styles.permissionsTitle}>Search User</h4>
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Enter username"
+          className={styles.input}
+        />
+        <button
+          onClick={handleSearch}
+          disabled={loading || !username}
+        >
+          {loading ? 'Searching...' : 'Search'}
+        </button>
+        </div>
+      </section>
+  
       {permissions && (
-  <div className={styles.permissionsBox}>
-    <h3 className={styles.permissionsTitle}>Permissions</h3>
-    <form className={styles.permissionsForm}>
-      <Checkbox
-        label="Can Search Songs"
-        value={permissions.canSearchSongs}
-        onChange={() => handleCheckbox('canSearchSongs')}
-      />
-      <Checkbox
-        label="Can Add Songs to Playlist"
-        value={permissions.canAddSongsToPlaylist}
-        onChange={() => handleCheckbox('canAddSongsToPlaylist')}
-      />
-      <Checkbox
-        label="Can Delete Songs from Playlist"
-        value={permissions.canDeleteSongsFromPlaylist}
-        onChange={() => handleCheckbox('canDeleteSongsFromPlaylist')}
-      />
-    </form>
-    <button onClick={handleSave} className={styles.saveButton}>
-      Save Changes
-    </button>
-  </div>
-)}
+        <section className="sectionBox">
+          <div className={styles.permissionsBox}>
+          <form className={styles.permissionsForm}>
+            <Checkbox
+              label="Can Search Songs"
+              value={permissions.canSearchSongs}
+              onChange={() => handleCheckbox('canSearchSongs')}
+            />
+            <Checkbox
+              label="Can Add Songs to Playlist"
+              value={permissions.canAddSongsToPlaylist}
+              onChange={() => handleCheckbox('canAddSongsToPlaylist')}
+            />
+            <Checkbox
+              label="Can Delete Songs from Playlist"
+              value={permissions.canDeleteSongsFromPlaylist}
+              onChange={() => handleCheckbox('canDeleteSongsFromPlaylist')}
+            />
+          </form>
+          <button onClick={handleSave}>
+            Save Changes
+          </button>
+          </div>
+        </section>
+      )}
     </div>
   </div>
   );

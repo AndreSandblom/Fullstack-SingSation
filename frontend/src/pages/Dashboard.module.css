@@ -1,4 +1,14 @@
-  .searchSection {
+.permissionsBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 1rem;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+ 
+ .searchSection {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,6 +28,7 @@
   .permissionsForm {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 1.5rem;
     margin-bottom: 2rem;
   }
@@ -25,7 +36,7 @@
   .checkboxWrapper {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
   }
   
   .label {
@@ -76,10 +87,20 @@
     background-color: #00FFF7;
     box-shadow: 0 0 0.5rem #00FFF7, 0 0 1rem #00FFF7;
   }
+
+  .permissionsTitle {
+      text-align: center;
+  }
   
   .hiddenCheckbox:checked + .slider::before {
     transform: translateX(1.6rem);
     background-color: rgb(254, 255, 167);
     box-shadow: 0 0 0.3rem #00FFF7;
+  } 
+
+  .statisticsBox {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
   }
   
