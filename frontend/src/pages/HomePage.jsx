@@ -5,8 +5,6 @@ import axios from 'axios';
 import SearchForm from '../components/SearchForm';
 import SongList   from '../components/SongList';
 
-import styles from './HomePage.module.css';
-
 export default function HomePage() {
   const navigate = useNavigate();
   //const [canSearchSongs, setCanSearchSongs] = useState(null); // null = unknown, true/false = known
@@ -38,9 +36,9 @@ export default function HomePage() {
   };
 
   return (
-    <div className={styles.container}>
+    <div className="container">
     <div className="overlay">
-      <h1 className={styles.title}>SingSation</h1>
+      <h1 className="appLogo">SingSation</h1>
       {canSearchSongs && <SearchForm onSearch={goToLyrics} />}
       <SongList onSongSelect={goToLyrics} />
     </div>
