@@ -68,6 +68,29 @@ const getUserPlaylist = async (req,res) => {
     }
 }
 
+const getAverageSongsPerPlaylist = async (req, res) => {
+  try {
+    const result = await Playlist.aggregate([
+      {
+        $project: {
+          songCount: { $size: "$songs" } // count number of songs in each playlist
+        }
+      },
+      {
+        $group: {
+          _id: null,
+          averageSongs: { $avg: "$songCount" }
+        }
+      }
+    ]);
+
+    const average = result[0]?.averageSongs ?? 0;
+
+    res.status(200).json({ averageSongsPerPlaylist: average });
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to calculate average songs per playlist' });
+  }
+};
 
 
-export { addSong, deleteSong, getUserPlaylist };
+export { addSong, deleteSong, getUserPlaylist, getAverageSongsPerPlaylist };

@@ -178,6 +178,16 @@ const logoutUser = (req, res) => {
   });
 };
 
+const getTotalUsers = async (req, res) => {
+  try {
+    const count = await User.countDocuments();
+    res.status(200).json({ totalUsers: count });
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to retrieve user count' });
+  }
+};
+
+
 function isValidPassword(password) {
   // At least 8 characters, one digit, and one special character
   const regex = /^(?=.*\d)(?=.*[^a-zA-Z0-9]).{8,}$/;
@@ -191,4 +201,5 @@ export {
   updatePassword,
   loginUser,
   logoutUser,
+  getTotalUsers
 };

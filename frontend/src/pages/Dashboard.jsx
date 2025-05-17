@@ -10,20 +10,35 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState(null);
   const [isAdmin, setIsAdmin] = useState(null);
+  const [averageSongs, setAverageSongs] = useState(null);
+  const [totalUsers, setTotalUsers] = useState(null);
+
 
   useEffect(() => {
-    const checkAdmin = async () => {
+  const checkAdminAndFetchStats = async () => {
       try {
         const res = await axios.get('/api/permissions/', {
           withCredentials: true,
         });
-        setIsAdmin(res.data.isAdmin === true);
+        const isAdmin = res.data.isAdmin === true;
+        setIsAdmin(isAdmin);
+
+        if (isAdmin) {
+          // Only fetch if admin
+          const [avgSongsRes, userCountRes] = await Promise.all([
+            axios.get('/api/playlists/average-songs'),
+            axios.get('/api/users/count')
+          ]);
+
+          setAverageSongs(avgSongsRes.data.averageSongsPerPlaylist);
+          setTotalUsers(userCountRes.data.totalUsers);
+        }
       } catch (err) {
         setIsAdmin(false);
       }
     };
 
-    checkAdmin();
+    checkAdminAndFetchStats();
   }, []);
 
   if (isAdmin === null) {
@@ -113,8 +128,14 @@ const Dashboard = () => {
   </button>
 </div>
 
-      {status && <p className="message error">{status}</p>}
+  {status && <p className="message error">{status}</p>}
 
+  {averageSongs !== null && totalUsers !== null && (
+    <div className={styles.permissionsBox}>
+      <p><strong>Total Users:</strong> {totalUsers}</p>
+      <p><strong>Average Songs per Playlist:</strong> {averageSongs.toFixed(2)}</p>
+    </div>
+  )}
       {permissions && (
   <div className={styles.permissionsBox}>
     <h3 className={styles.permissionsTitle}>Permissions</h3>
