@@ -1,5 +1,5 @@
  .title {
-    font-size: 1.8rem;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
     font-weight: bold;
     text-align: center;
     margin-bottom: 2rem;
@@ -9,10 +9,12 @@
   
   .lyrics {
     white-space: pre-wrap;
-    font-size: 1rem;
-    line-height: 1.5;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
     margin-top: 2rem;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
   }
   
   .spotifyLink {
@@ -21,7 +23,7 @@
     margin: 1.5rem auto 0 auto;
     color: #00FFF7;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: clamp(1rem, 2vw, 1.3rem);
     text-decoration: none;
     text-shadow: 0 0 0.2rem #00FFF7;
     transition: transform 0.2s ease, text-shadow 0.2s ease;

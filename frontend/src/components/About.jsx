@@ -16,9 +16,9 @@ const teamMembers = [
       },
       {
         name: 'Kate',
-        role: 'UI Design & External APIs integration',
+        role: 'App UI & External APIs integration',
         photo: '/assets/kate.jpg',
-        contribution: 'Created the complete app UI with responsive design and interactive user features, implemented dynamic lyrics search and display using the lyrics.ovh API, and integrated Spotify API for song playback links.',
+        contribution: 'Created the complete app user interface with responsive design and interactive user features, implemented dynamic lyrics search and display using the lyrics.ovh API, and integrated Spotify API for song playback links.',
       },
 ]
 
