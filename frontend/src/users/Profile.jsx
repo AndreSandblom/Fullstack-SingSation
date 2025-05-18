@@ -160,9 +160,9 @@ export default function ProfilePage() {
       <div className={styles.actions}>
         {permissions?.canAddSongsToPlaylist}
       </div>
-  
+    
       <section className="sectionBox">
-        <h3>Your Favorite Songs</h3>
+      <h3>Your Favorite Songs</h3>
         {playlist.length === 0 ? (
           <p>No favorite songs saved yet.</p>
         ) : (
