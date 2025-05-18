@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { buildSpotifyLink } from '../utils/spotifyUtils';
 import styles from './LyricsPage.module.css';
-import AddToPlaylist from '../components/addSong';
+import AddToPlaylist from '../components/AddSong';
 
 
 export default function LyricsPage() {
