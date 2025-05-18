@@ -35,7 +35,11 @@ export default function LyricsPage() {
         {loading ? (
           <p className={styles.lyrics}>Loading lyrics…</p>
         ) : (
-          <pre className={styles.lyrics}>{lyrics}</pre>
+          <div className={styles.lyrics}>
+          {lyrics.split('\n').map((line, index) => (
+            <p key={index}>{line}</p>
+          ))}
+        </div>
         )}
       </div>
     </div>
