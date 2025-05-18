@@ -24,7 +24,7 @@ export default function SongList({ onSongSelect }) {
 
     return (
       <div className={styles.container}>
-      <h2 className={styles.title}>Song List</h2>
+      <h2 className={styles.title}>Popular Songs</h2>
       <ul>
         {songs?.map((song, index) => (
           <li key={index} className={styles.songItem}>
