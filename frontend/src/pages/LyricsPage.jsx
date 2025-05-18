@@ -26,7 +26,7 @@ export default function LyricsPage() {
   }, [artist, title]);
 
   return (
-    <div className={styles.container}>
+    <div className="container">
       <div className="overlay">
         <h2 className={styles.title}>
           {decodeURIComponent(title)} by {decodeURIComponent(artist)}
