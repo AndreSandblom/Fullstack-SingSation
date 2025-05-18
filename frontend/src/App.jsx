@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
+import { Toaster } from 'react-hot-toast';
 
 //pages
 import HomePage from './pages/HomePage';
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/about" element={<AboutPage />} />
       </Routes>
+      <Toaster position="top-right" />
     </>
   );
 }

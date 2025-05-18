@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { buildSpotifyLink } from '../utils/spotifyUtils';
 import styles from './LyricsPage.module.css';
+import AddToPlaylist from '../components/addSong';
 
 
 export default function LyricsPage() {
@@ -32,6 +33,11 @@ export default function LyricsPage() {
           {decodeURIComponent(title)} by {decodeURIComponent(artist)}
         </h2>
         <a href={spotifyUrl} target="_blank" rel="noopener noreferrer" className={styles.spotifyLink}>Listen on Spotify</a>
+
+        <AddToPlaylist 
+          songName={decodeURIComponent(title)}
+          artist={decodeURIComponent(artist)}
+        />  
         {loading ? (
           <p className={styles.lyrics}>Loading lyrics…</p>
         ) : (
