@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import styles from './Profile.module.css';
 import "./Form.css";
 
@@ -19,6 +20,7 @@ export default function ProfilePage() {
     newPassword: '',
   });
   const [permissions, setPermissions] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -123,7 +125,7 @@ export default function ProfilePage() {
       console.error('Failed to delete song', err);
     }
   };
-
+  /*
   const handleAddDummy = async () => {
     try {
       await axios.post(
@@ -140,6 +142,11 @@ export default function ProfilePage() {
       console.error('Failed to add dummy song', err);
     }
   };
+  */
+
+  const goToLyrics = ({ artist, title }) => {
+  navigate(`/lyrics/${encodeURIComponent(artist)}/${encodeURIComponent(title)}`);
+  };
 
   if (error) return <p>{error}</p>;
   if (!profile) return <p>Loading...</p>;
@@ -151,9 +158,7 @@ export default function ProfilePage() {
       <p>Email: {profile.email}</p>
   
       <div className={styles.actions}>
-        {permissions?.canAddSongsToPlaylist && (
-          <button onClick={handleAddDummy} className="primary-button">Add Dummy Song to Playlist</button>
-        )}
+        {permissions?.canAddSongsToPlaylist}
       </div>
   
       <section className="sectionBox">
@@ -165,14 +170,21 @@ export default function ProfilePage() {
             {playlist.map((song) => (
               <li key={`${song.title}-${song.artist}`} className="playlist-item">
                 <span><strong>{song.title}</strong> by {song.artist}</span>
-                {permissions?.canDeleteSongsFromPlaylist && (
+                <div className="button-group">
+                  {permissions?.canDeleteSongsFromPlaylist && (
+                    <button
+                      onClick={() => handleDeleteSong(song.title, song.artist)}
+                      className="danger-button small"
+                    >
+                      Delete
+                    </button>
+                  )}  
                   <button
-                    onClick={() => handleDeleteSong(song.title, song.artist)}
-                    className="danger-button small"
+                  onClick={() => goToLyrics({artist: song.artist, title: song.title})}
                   >
-                    Delete
+                    View Lyrics
                   </button>
-                )}
+                </div>
               </li>
             ))}
           </ul>

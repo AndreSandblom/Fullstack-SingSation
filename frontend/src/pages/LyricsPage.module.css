@@ -29,4 +29,8 @@
     transform: scale(1.07);
     text-shadow: 0 0 0.4rem #00FFF7, 0 0 0.6rem #00FFF7;
   }
+
+  .addButton {
+  margin: 1rem 0;
+  }
   
